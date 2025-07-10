@@ -1,0 +1,421 @@
+Ran tool
+
+Ran tool
+
+Ran tool
+
+Read file: src/config.py
+
+Read file: src/config.py
+
+Read file: src/data/nyu.py
+
+Search files...
+
+Below is a concrete, “from-code-to-paper” road-map you can follow to inject semantic–segmentation information into the DiffusionDepth repository and to produce a clean comparison with the original method.
+
+────────────────────────────────────────
+1. Reproduce the published baseline
+────────────────────────────────────────
+1.1  Install everything in `requirements.txt` and verify that  
+     `python -m src.main --help` works.
+
+1.2  Prepare a **depth-only** run exactly as the paper does  
+     (e.g. NYU → `data_json/nyu.json`, KITTI-DC → `data_json/kitti_dc.json`).  
+
+     Keep the training log, checkpoints and results under  
+     `experiments/YYMMDD_baseline/ …`.
+
+1.3  Make sure metrics in `src/metric/…` (RMSE, REL, …) match the numbers
+     reported in the paper; this guarantees the code/env are correct before
+     you add anything new.
+
+────────────────────────────────────────
+2. Collect / align the segmentation labels
+────────────────────────────────────────
+2.1  Choose the dataset:
+     • NYU-v2: RGB-D frames already have 40-class semantic masks  
+       (Office NYU release).  
+     • KITTI-DC: Use Cityscapes-like masks (or KITTI-Seg) that align with the
+       RGB images.
+
+2.2  Store each segmentation mask beside the corresponding RGB/Depth file
+     and add the relative path to your JSON split file, e.g.  
+
+     ```
+     {
+       "filename": "train/office_0003/00120.h5",
+       "seg": "train/office_0003/00120_seg.png"
+     }
+     ```
+
+2.3  Decide the label format you want in PyTorch:  
+     – ​`uint8` tensor of shape (H,W) with class indices.  
+     – One-hot (C,H,W) if you will concatenate it to RGB (option A below).
+
+────────────────────────────────────────
+3. Extend the data loaders
+────────────────────────────────────────
+Edit `src/data/nyu.py` (and `kittidc.py` if needed):
+
+```python
+// ... existing code ...
+
+seg_path = self.sample_list[idx].get('seg', None)
+if seg_path is not None:
+    seg = Image.open(os.path.join(self.args.dir_data, seg_path))
+    seg = TF.resize(seg, self.height, interpolation=Image.NEAREST)
+    seg = TF.center_crop(seg, self.crop_size)
+    seg = torch.as_tensor(np.array(seg), dtype=torch.long)   # (H,W)
+else:
+    seg = None
+
+output = {'rgb': rgb,
+          'dep': dep_sp,
+          'gt':  dep,          # dense depth GT
+          'K':   K,
+          'seg': seg,          # NEW
+          'depth_mask': depth_mask,
+          'depth_map': depth_maps}
+```
+
+• Do the same transform sequence (crop/flip/rotate) to the seg mask so it
+  stays pixel-aligned with RGB/Depth.
+
+────────────────────────────────────────
+4. Decide how to inject segmentation
+────────────────────────────────────────
+You have two popular choices. Pick one or implement both for ablation.
+
+Option A – “Early-fusion”:  Concatenate seg (either one-hot or an
+embedding) to RGB and let the existing backbone consume (3+S) channels.
+
+• Pros: Minimal code; no new heads or losses.  
+• Cons: Backbone must be retrained from scratch.
+
+Implementation outline:
+  – In the dataset, convert seg mask to one-hot (S,H,W) and `torch.cat`
+    with RGB before returning.  
+  – Change `get_backbone()` so the first conv layer expects 3+S
+    input channels (easy for ResNet: modify `conv1.in_channels`).  
+
+Option B – “Multi-task / auxiliary head” (recommended):
+  1. Keep RGB input unchanged.  
+  2. Add a **segmentation head** parallel to `depth_head`.
+     - Place new file `src/model/head/seg_head.py` with a light decoder
+       (e.g. 4 up-conv layers + 1×1 prediction).  
+  3. In `model/diffusion_dcbase_model.py`:
+     • Add `self.seg_head = HEADS.build(seg_head_cfg)` in `__init__`.  
+     • Inside `extract_depth` (or a new method) run
+
+       ```python
+       seg_logits = self.seg_head(fp)          # (B,C,H,W)
+       ```
+
+  4. Return `{'pred': depth_pred,
+             'seg_logits': seg_logits,
+             'ddim_loss': …}`.
+
+  5. Create `src/loss/submodule/celoss.py` (cross-entropy) and add it to
+     `src/loss/__init__.py`.
+
+  6. Extend `src/loss/diffusion_dcbase_loss.py`:
+
+     ```python
+     elif loss_type == 'CE':
+         seg_logits = output['seg_logits']
+         gt_seg = sample['seg']
+         loss_tmp = loss_func(seg_logits, gt_seg)
+     ```
+
+  7. In `config.py` expose new flags:
+     – `--num_seg_classes`, `--seg_loss_weight`,  
+     – add `'1.0*CE'` to default loss string.
+
+  8. Update summaries & metric files if you want to log mIoU, pixel accuracy
+     (optional but easy).
+
+────────────────────────────────────────
+5. Training script updates
+────────────────────────────────────────
+5.1  `src/main.py ➜ train()` automatically forwards the entire `sample`
+     dict to the model, so once the new keys (seg) exist you are done.
+
+5.2  Make sure AMP / DDP still works; if you changed the first conv layer
+     keep weight init consistent.
+
+────────────────────────────────────────
+6. Hyper-parameters & training
+────────────────────────────────────────
+6.1  Early-fusion option: usually lower LR works (the input space changed).  
+6.2  Multi-task option: balance the two losses, e.g.  
+     `--loss "1.0*L1+1.0*L2+1.0*DDIM+0.5*CE"`.
+
+6.3  Run:
+
+```
+python -m torch.distributed.launch \
+   --nproc_per_node=4 src/main.py \
+   --data_name NYU \
+   --split_json ../data_json/nyu_seg.json \
+   --loss "1.0*L1+1.0*L2+1.0*DDIM+0.5*CE" \
+   --save seg_aux
+```
+
+────────────────────────────────────────
+7. Evaluation & comparison
+────────────────────────────────────────
+7.1  Depth metrics: the existing metric class already computes them.  
+
+7.2  Segmentation metrics (if Option B): add calculation in a new
+     `Metric` subclass or use `torchmetrics` mIoU.
+
+7.3  Produce a table:
+
+| Model                    | RMSE ↓ | REL ↓ | δ<1.25 ↑ | mIoU ↑ |
+|--------------------------|--------|-------|----------|--------|
+| DiffusionDepth (paper)   | …      | …     | …        | –      |
+| Ours w/ Seg (Early-fuse) | …      | …     | …        | –      |
+| Ours w/ Seg (Multi-task) | …      | …     | …        | …      |
+
+────────────────────────────────────────
+8. Ablation & analysis
+────────────────────────────────────────
+• With / without segmentation loss  
+• Different seg-loss weights  
+• Visual qualitative comparison of depth at object boundaries  
+  (use `summary/` routines to overlay depth & seg).
+
+────────────────────────────────────────
+9. Writing the paper section
+────────────────────────────────────────
+9.1  Method paragraph: “We extend DiffusionDepth by injecting semantic priors
+     … Two variants – early-fusion and auxiliary-head – were investigated …”.
+
+9.2  Implementation details: dataset source, seg class number, hyper-params.
+
+9.3  Results paragraph: depth improvements at boundaries; discuss trade-off.
+
+────────────────────────────────────────
+10. Timeline suggestion
+────────────────────────────────────────
+Week 1     Reproduce baseline  
+Week 2     Collect / align segmentation masks  
+Week 3     Implement data-loader & model changes  
+Week 4–5  Train both variants, tune λ, gather results  
+Week 6     Write analysis, prepare figures & tables
+
+Follow these steps and you will have a clear, reproducible path from code
+changes to quantitative comparison with the original DiffusionDepth model.
+Good luck, and feel free to ask for code-level help on any of the individual
+steps!Ran tool
+
+Ran tool
+
+Ran tool
+
+Read file: src/config.py
+
+Read file: src/config.py
+
+Read file: src/data/nyu.py
+
+Search files...
+
+Below is a concrete, “from-code-to-paper” road-map you can follow to inject semantic–segmentation information into the DiffusionDepth repository and to produce a clean comparison with the original method.
+
+────────────────────────────────────────
+1. Reproduce the published baseline
+────────────────────────────────────────
+1.1  Install everything in `requirements.txt` and verify that  
+     `python -m src.main --help` works.
+
+1.2  Prepare a **depth-only** run exactly as the paper does  
+     (e.g. NYU → `data_json/nyu.json`, KITTI-DC → `data_json/kitti_dc.json`).  
+
+     Keep the training log, checkpoints and results under  
+     `experiments/YYMMDD_baseline/ …`.
+
+1.3  Make sure metrics in `src/metric/…` (RMSE, REL, …) match the numbers
+     reported in the paper; this guarantees the code/env are correct before
+     you add anything new.
+
+────────────────────────────────────────
+2. Collect / align the segmentation labels
+────────────────────────────────────────
+2.1  Choose the dataset:
+     • NYU-v2: RGB-D frames already have 40-class semantic masks  
+       (Office NYU release).  
+     • KITTI-DC: Use Cityscapes-like masks (or KITTI-Seg) that align with the
+       RGB images.
+
+2.2  Store each segmentation mask beside the corresponding RGB/Depth file
+     and add the relative path to your JSON split file, e.g.  
+
+     ```
+     {
+       "filename": "train/office_0003/00120.h5",
+       "seg": "train/office_0003/00120_seg.png"
+     }
+     ```
+
+2.3  Decide the label format you want in PyTorch:  
+     – ​`uint8` tensor of shape (H,W) with class indices.  
+     – One-hot (C,H,W) if you will concatenate it to RGB (option A below).
+
+────────────────────────────────────────
+3. Extend the data loaders
+────────────────────────────────────────
+Edit `src/data/nyu.py` (and `kittidc.py` if needed):
+
+```python
+// ... existing code ...
+
+seg_path = self.sample_list[idx].get('seg', None)
+if seg_path is not None:
+    seg = Image.open(os.path.join(self.args.dir_data, seg_path))
+    seg = TF.resize(seg, self.height, interpolation=Image.NEAREST)
+    seg = TF.center_crop(seg, self.crop_size)
+    seg = torch.as_tensor(np.array(seg), dtype=torch.long)   # (H,W)
+else:
+    seg = None
+
+output = {'rgb': rgb,
+          'dep': dep_sp,
+          'gt':  dep,          # dense depth GT
+          'K':   K,
+          'seg': seg,          # NEW
+          'depth_mask': depth_mask,
+          'depth_map': depth_maps}
+```
+
+• Do the same transform sequence (crop/flip/rotate) to the seg mask so it
+  stays pixel-aligned with RGB/Depth.
+
+────────────────────────────────────────
+4. Decide how to inject segmentation
+────────────────────────────────────────
+You have two popular choices. Pick one or implement both for ablation.
+
+Option A – “Early-fusion”:  Concatenate seg (either one-hot or an
+embedding) to RGB and let the existing backbone consume (3+S) channels.
+
+• Pros: Minimal code; no new heads or losses.  
+• Cons: Backbone must be retrained from scratch.
+
+Implementation outline:
+  – In the dataset, convert seg mask to one-hot (S,H,W) and `torch.cat`
+    with RGB before returning.  
+  – Change `get_backbone()` so the first conv layer expects 3+S
+    input channels (easy for ResNet: modify `conv1.in_channels`).  
+
+Option B – “Multi-task / auxiliary head” (recommended):
+  1. Keep RGB input unchanged.  
+  2. Add a **segmentation head** parallel to `depth_head`.
+     - Place new file `src/model/head/seg_head.py` with a light decoder
+       (e.g. 4 up-conv layers + 1×1 prediction).  
+  3. In `model/diffusion_dcbase_model.py`:
+     • Add `self.seg_head = HEADS.build(seg_head_cfg)` in `__init__`.  
+     • Inside `extract_depth` (or a new method) run
+
+       ```python
+       seg_logits = self.seg_head(fp)          # (B,C,H,W)
+       ```
+
+  4. Return `{'pred': depth_pred,
+             'seg_logits': seg_logits,
+             'ddim_loss': …}`.
+
+  5. Create `src/loss/submodule/celoss.py` (cross-entropy) and add it to
+     `src/loss/__init__.py`.
+
+  6. Extend `src/loss/diffusion_dcbase_loss.py`:
+
+     ```python
+     elif loss_type == 'CE':
+         seg_logits = output['seg_logits']
+         gt_seg = sample['seg']
+         loss_tmp = loss_func(seg_logits, gt_seg)
+     ```
+
+  7. In `config.py` expose new flags:
+     – `--num_seg_classes`, `--seg_loss_weight`,  
+     – add `'1.0*CE'` to default loss string.
+
+  8. Update summaries & metric files if you want to log mIoU, pixel accuracy
+     (optional but easy).
+
+────────────────────────────────────────
+5. Training script updates
+────────────────────────────────────────
+5.1  `src/main.py ➜ train()` automatically forwards the entire `sample`
+     dict to the model, so once the new keys (seg) exist you are done.
+
+5.2  Make sure AMP / DDP still works; if you changed the first conv layer
+     keep weight init consistent.
+
+────────────────────────────────────────
+6. Hyper-parameters & training
+────────────────────────────────────────
+6.1  Early-fusion option: usually lower LR works (the input space changed).  
+6.2  Multi-task option: balance the two losses, e.g.  
+     `--loss "1.0*L1+1.0*L2+1.0*DDIM+0.5*CE"`.
+
+6.3  Run:
+
+```
+python -m torch.distributed.launch \
+   --nproc_per_node=4 src/main.py \
+   --data_name NYU \
+   --split_json ../data_json/nyu_seg.json \
+   --loss "1.0*L1+1.0*L2+1.0*DDIM+0.5*CE" \
+   --save seg_aux
+```
+
+────────────────────────────────────────
+7. Evaluation & comparison
+────────────────────────────────────────
+7.1  Depth metrics: the existing metric class already computes them.  
+
+7.2  Segmentation metrics (if Option B): add calculation in a new
+     `Metric` subclass or use `torchmetrics` mIoU.
+
+7.3  Produce a table:
+
+| Model                    | RMSE ↓ | REL ↓ | δ<1.25 ↑ | mIoU ↑ |
+|--------------------------|--------|-------|----------|--------|
+| DiffusionDepth (paper)   | …      | …     | …        | –      |
+| Ours w/ Seg (Early-fuse) | …      | …     | …        | –      |
+| Ours w/ Seg (Multi-task) | …      | …     | …        | …      |
+
+────────────────────────────────────────
+8. Ablation & analysis
+────────────────────────────────────────
+• With / without segmentation loss  
+• Different seg-loss weights  
+• Visual qualitative comparison of depth at object boundaries  
+  (use `summary/` routines to overlay depth & seg).
+
+────────────────────────────────────────
+9. Writing the paper section
+────────────────────────────────────────
+9.1  Method paragraph: “We extend DiffusionDepth by injecting semantic priors
+     … Two variants – early-fusion and auxiliary-head – were investigated …”.
+
+9.2  Implementation details: dataset source, seg class number, hyper-params.
+
+9.3  Results paragraph: depth improvements at boundaries; discuss trade-off.
+
+────────────────────────────────────────
+10. Timeline suggestion
+────────────────────────────────────────
+Week 1     Reproduce baseline  
+Week 2     Collect / align segmentation masks  
+Week 3     Implement data-loader & model changes  
+Week 4–5  Train both variants, tune λ, gather results  
+Week 6     Write analysis, prepare figures & tables
+
+Follow these steps and you will have a clear, reproducible path from code
+changes to quantitative comparison with the original DiffusionDepth model.
+Good luck, and feel free to ask for code-level help on any of the individual
+steps!

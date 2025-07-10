@@ -1,0 +1,28 @@
+# Data directory
+data/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+.env/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Logs and local files
+*.log
+.DS_Store
+
+vision
+mmdetection3d
