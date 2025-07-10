@@ -1,0 +1,1808 @@
+{
+    "train": [
+        {
+            "filename": "train/living_room_0022/02046.h5"
+        },
+        {
+            "filename": "train/bedroom_0031/00351.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002a/01086.h5"
+        },
+        {
+            "filename": "train/living_room_0070/00031.h5"
+        },
+        {
+            "filename": "train/classroom_0022/00571.h5"
+        },
+        {
+            "filename": "train/classroom_0011/00311.h5"
+        },
+        {
+            "filename": "train/classroom_0006/00761.h5"
+        },
+        {
+            "filename": "train/kitchen_0011a/00431.h5"
+        },
+        {
+            "filename": "train/living_room_0019/01476.h5"
+        },
+        {
+            "filename": "train/kitchen_0017/00761.h5"
+        },
+        {
+            "filename": "train/living_room_0058/01681.h5"
+        },
+        {
+            "filename": "train/kitchen_0048/01416.h5"
+        },
+        {
+            "filename": "train/living_room_0019/00311.h5"
+        },
+        {
+            "filename": "train/living_room_0022/00901.h5"
+        },
+        {
+            "filename": "train/bathroom_0045a/00401.h5"
+        },
+        {
+            "filename": "train/bathroom_0007/00136.h5"
+        },
+        {
+            "filename": "train/study_room_0004/01526.h5"
+        },
+        {
+            "filename": "train/dining_room_0013/00036.h5"
+        },
+        {
+            "filename": "train/living_room_0070/00376.h5"
+        },
+        {
+            "filename": "train/living_room_0039/01196.h5"
+        },
+        {
+            "filename": "train/kitchen_0048/01146.h5"
+        },
+        {
+            "filename": "train/bedroom_0016/00326.h5"
+        },
+        {
+            "filename": "train/kitchen_0060/01221.h5"
+        },
+        {
+            "filename": "train/dining_room_0016/00491.h5"
+        },
+        {
+            "filename": "train/kitchen_0050/00386.h5"
+        },
+        {
+            "filename": "train/classroom_0006/00506.h5"
+        },
+        {
+            "filename": "train/dining_room_0004/00056.h5"
+        },
+        {
+            "filename": "train/living_room_0071/00106.h5"
+        },
+        {
+            "filename": "train/kitchen_0052/00331.h5"
+        },
+        {
+            "filename": "train/dining_room_0015/01806.h5"
+        },
+        {
+            "filename": "train/kitchen_0019a/00946.h5"
+        },
+        {
+            "filename": "train/kitchen_0035b/00686.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001d/00016.h5"
+        },
+        {
+            "filename": "train/living_room_0018/00896.h5"
+        },
+        {
+            "filename": "train/dining_room_0033/00556.h5"
+        },
+        {
+            "filename": "train/dining_room_0016/00591.h5"
+        },
+        {
+            "filename": "train/office_0024/00081.h5"
+        },
+        {
+            "filename": "train/dining_room_0023/00506.h5"
+        },
+        {
+            "filename": "train/kitchen_0017/00651.h5"
+        },
+        {
+            "filename": "train/bedroom_0051/01476.h5"
+        },
+        {
+            "filename": "train/living_room_0042a/00206.h5"
+        },
+        {
+            "filename": "train/bathroom_0006/00006.h5"
+        },
+        {
+            "filename": "train/bathroom_0033/00311.h5"
+        },
+        {
+            "filename": "train/home_office_0004/01126.h5"
+        },
+        {
+            "filename": "train/playroom_0006/00366.h5"
+        },
+        {
+            "filename": "train/kitchen_0049/00131.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001c/00026.h5"
+        },
+        {
+            "filename": "train/kitchen_0016/00461.h5"
+        },
+        {
+            "filename": "train/kitchen_0033/00876.h5"
+        },
+        {
+            "filename": "train/kitchen_0049/01581.h5"
+        },
+        {
+            "filename": "train/dining_room_0028/00701.h5"
+        },
+        {
+            "filename": "train/living_room_0004/00921.h5"
+        },
+        {
+            "filename": "train/kitchen_0017/00456.h5"
+        },
+        {
+            "filename": "train/dining_room_0007/00916.h5"
+        },
+        {
+            "filename": "train/living_room_0039/00456.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001b/00636.h5"
+        },
+        {
+            "filename": "train/dining_room_0016/00056.h5"
+        },
+        {
+            "filename": "train/excercise_room_0001/00031.h5"
+        },
+        {
+            "filename": "train/kitchen_0043/00771.h5"
+        },
+        {
+            "filename": "train/kitchen_0028a/00621.h5"
+        },
+        {
+            "filename": "train/dining_room_0013/00721.h5"
+        },
+        {
+            "filename": "train/dining_room_0024/00986.h5"
+        },
+        {
+            "filename": "train/kitchen_0033/00761.h5"
+        },
+        {
+            "filename": "train/bedroom_0094/00291.h5"
+        },
+        {
+            "filename": "train/dining_room_0007/00096.h5"
+        },
+        {
+            "filename": "train/bedroom_0050/00441.h5"
+        },
+        {
+            "filename": "train/kitchen_0037/00156.h5"
+        },
+        {
+            "filename": "train/reception_room_0001a/00221.h5"
+        },
+        {
+            "filename": "train/kitchen_0059/00461.h5"
+        },
+        {
+            "filename": "train/bathroom_0041/00061.h5"
+        },
+        {
+            "filename": "train/living_room_0010/00311.h5"
+        },
+        {
+            "filename": "train/dining_room_0033/00326.h5"
+        },
+        {
+            "filename": "train/home_storage_0001/00176.h5"
+        },
+        {
+            "filename": "train/kitchen_0035b/00656.h5"
+        },
+        {
+            "filename": "train/bedroom_0120/00651.h5"
+        },
+        {
+            "filename": "train/office_kitchen_0003/00196.h5"
+        },
+        {
+            "filename": "train/bathroom_0045a/00016.h5"
+        },
+        {
+            "filename": "train/dining_room_0031/02201.h5"
+        },
+        {
+            "filename": "train/playroom_0002/00301.h5"
+        },
+        {
+            "filename": "train/dining_room_0037/00241.h5"
+        },
+        {
+            "filename": "train/office_0024/00901.h5"
+        },
+        {
+            "filename": "train/bedroom_0062/00361.h5"
+        },
+        {
+            "filename": "train/kitchen_0051/02461.h5"
+        },
+        {
+            "filename": "train/living_room_0085/00336.h5"
+        },
+        {
+            "filename": "train/classroom_0006/01451.h5"
+        },
+        {
+            "filename": "train/bedroom_0031/00241.h5"
+        },
+        {
+            "filename": "train/office_kitchen_0003/00591.h5"
+        },
+        {
+            "filename": "train/kitchen_0060/00711.h5"
+        },
+        {
+            "filename": "train/bedroom_0052/00411.h5"
+        },
+        {
+            "filename": "train/dining_room_0031/00006.h5"
+        },
+        {
+            "filename": "train/bedroom_0130/00646.h5"
+        },
+        {
+            "filename": "train/bathroom_0050/00026.h5"
+        },
+        {
+            "filename": "train/bedroom_0074/00446.h5"
+        },
+        {
+            "filename": "train/dining_room_0014/00456.h5"
+        },
+        {
+            "filename": "train/conference_room_0001/00126.h5"
+        },
+        {
+            "filename": "train/bedroom_0020/00346.h5"
+        },
+        {
+            "filename": "train/living_room_0029/00801.h5"
+        },
+        {
+            "filename": "train/living_room_0040/01201.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001g/00836.h5"
+        },
+        {
+            "filename": "train/bathroom_0005/00061.h5"
+        },
+        {
+            "filename": "train/bedroom_0062/00051.h5"
+        },
+        {
+            "filename": "train/living_room_0010/01316.h5"
+        },
+        {
+            "filename": "train/study_0004/00011.h5"
+        },
+        {
+            "filename": "train/living_room_0022/02806.h5"
+        },
+        {
+            "filename": "train/bedroom_0052/00201.h5"
+        },
+        {
+            "filename": "train/living_room_0062/00981.h5"
+        },
+        {
+            "filename": "train/home_office_0005/00216.h5"
+        },
+        {
+            "filename": "train/kitchen_0028a/00586.h5"
+        },
+        {
+            "filename": "train/living_room_0040/00191.h5"
+        },
+        {
+            "filename": "train/kitchen_0029b/00431.h5"
+        },
+        {
+            "filename": "train/bedroom_0062/00086.h5"
+        },
+        {
+            "filename": "train/living_room_0039/00411.h5"
+        },
+        {
+            "filename": "train/reception_room_0001a/00256.h5"
+        },
+        {
+            "filename": "train/office_0011/00276.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002a/01531.h5"
+        },
+        {
+            "filename": "train/living_room_0046a/00141.h5"
+        },
+        {
+            "filename": "train/bedroom_0015/00506.h5"
+        },
+        {
+            "filename": "train/living_room_0029/00821.h5"
+        },
+        {
+            "filename": "train/dining_room_0008/00446.h5"
+        },
+        {
+            "filename": "train/bathroom_0034/00096.h5"
+        },
+        {
+            "filename": "train/kitchen_0049/01391.h5"
+        },
+        {
+            "filename": "train/bathroom_0055/00006.h5"
+        },
+        {
+            "filename": "train/dining_room_0007/01261.h5"
+        },
+        {
+            "filename": "train/bedroom_0029/00451.h5"
+        },
+        {
+            "filename": "train/playroom_0004/00861.h5"
+        },
+        {
+            "filename": "train/bedroom_0076a/00096.h5"
+        },
+        {
+            "filename": "train/living_room_0040/00276.h5"
+        },
+        {
+            "filename": "train/kitchen_0060/00236.h5"
+        },
+        {
+            "filename": "train/kitchen_0048/00451.h5"
+        },
+        {
+            "filename": "train/bedroom_0076b/00756.h5"
+        },
+        {
+            "filename": "train/dining_room_0037/00596.h5"
+        },
+        {
+            "filename": "train/reception_room_0001a/00181.h5"
+        },
+        {
+            "filename": "train/classroom_0011/00456.h5"
+        },
+        {
+            "filename": "train/classroom_0016/00466.h5"
+        },
+        {
+            "filename": "train/kitchen_0045b/00561.h5"
+        },
+        {
+            "filename": "train/office_0006/00746.h5"
+        },
+        {
+            "filename": "train/bedroom_0020/00391.h5"
+        },
+        {
+            "filename": "train/kitchen_0033/01236.h5"
+        },
+        {
+            "filename": "train/kitchen_0029b/00106.h5"
+        },
+        {
+            "filename": "train/kitchen_0050/00671.h5"
+        },
+        {
+            "filename": "train/bedroom_0019/00666.h5"
+        },
+        {
+            "filename": "train/kitchen_0052/00661.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002b/01351.h5"
+        },
+        {
+            "filename": "train/living_room_0063/00096.h5"
+        },
+        {
+            "filename": "train/bedroom_0056a/00366.h5"
+        },
+        {
+            "filename": "train/kitchen_0019a/00551.h5"
+        },
+        {
+            "filename": "train/living_room_0058/00051.h5"
+        },
+        {
+            "filename": "train/bathroom_0056/00296.h5"
+        },
+        {
+            "filename": "train/living_room_0083/00671.h5"
+        },
+        {
+            "filename": "train/classroom_0018/00151.h5"
+        },
+        {
+            "filename": "train/living_room_0012/00091.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002c/00286.h5"
+        },
+        {
+            "filename": "train/living_room_0033/00211.h5"
+        },
+        {
+            "filename": "train/classroom_0010/00416.h5"
+        },
+        {
+            "filename": "train/dining_room_0007/00611.h5"
+        },
+        {
+            "filename": "train/office_0006/00096.h5"
+        },
+        {
+            "filename": "train/living_room_0022/00526.h5"
+        },
+        {
+            "filename": "train/kitchen_0019a/00041.h5"
+        },
+        {
+            "filename": "train/bedroom_0136/00101.h5"
+        },
+        {
+            "filename": "train/kitchen_0043/01571.h5"
+        },
+        {
+            "filename": "train/bathroom_0007/00471.h5"
+        },
+        {
+            "filename": "train/dining_room_0023/00536.h5"
+        },
+        {
+            "filename": "train/dining_room_0004/00831.h5"
+        },
+        {
+            "filename": "train/playroom_0002/00521.h5"
+        },
+        {
+            "filename": "train/dining_room_0001b/01471.h5"
+        },
+        {
+            "filename": "train/bathroom_0013/00111.h5"
+        },
+        {
+            "filename": "train/bedroom_0015/00701.h5"
+        },
+        {
+            "filename": "train/student_lounge_0001/00651.h5"
+        },
+        {
+            "filename": "train/home_office_0008/00061.h5"
+        },
+        {
+            "filename": "train/home_office_0005/00356.h5"
+        },
+        {
+            "filename": "train/bedroom_0015/00041.h5"
+        },
+        {
+            "filename": "train/dining_room_0037/00386.h5"
+        },
+        {
+            "filename": "train/bathroom_0039/00061.h5"
+        },
+        {
+            "filename": "train/living_room_0019/01296.h5"
+        },
+        {
+            "filename": "train/laundry_room_0001/00401.h5"
+        },
+        {
+            "filename": "train/bedroom_0034/00231.h5"
+        },
+        {
+            "filename": "train/kitchen_0011a/00186.h5"
+        },
+        {
+            "filename": "train/living_room_0068/00211.h5"
+        },
+        {
+            "filename": "train/kitchen_0052/00311.h5"
+        },
+        {
+            "filename": "train/classroom_0011/00211.h5"
+        },
+        {
+            "filename": "train/dining_room_0008/01386.h5"
+        },
+        {
+            "filename": "train/bedroom_0071/00166.h5"
+        },
+        {
+            "filename": "train/study_room_0004/00981.h5"
+        },
+        {
+            "filename": "train/bathroom_0033/00201.h5"
+        },
+        {
+            "filename": "train/bedroom_0071/00221.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002a/01266.h5"
+        },
+        {
+            "filename": "train/home_office_0006/00056.h5"
+        },
+        {
+            "filename": "train/living_room_0047b/00166.h5"
+        },
+        {
+            "filename": "train/bedroom_0063/00356.h5"
+        },
+        {
+            "filename": "train/office_0023/00311.h5"
+        },
+        {
+            "filename": "train/home_office_0008/01211.h5"
+        },
+        {
+            "filename": "train/living_room_0018/01281.h5"
+        },
+        {
+            "filename": "train/living_room_0018/00681.h5"
+        },
+        {
+            "filename": "train/kitchen_0003/00651.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001b/00506.h5"
+        },
+        {
+            "filename": "train/bedroom_0028/00001.h5"
+        },
+        {
+            "filename": "train/bedroom_0074/00741.h5"
+        },
+        {
+            "filename": "train/living_room_0068/00111.h5"
+        },
+        {
+            "filename": "train/bedroom_0074/00821.h5"
+        },
+        {
+            "filename": "train/kitchen_0019b/00211.h5"
+        }
+    ],
+    "test": [
+        {
+            "filename": "val/official/01038.h5"
+        },
+        {
+            "filename": "val/official/00539.h5"
+        },
+        {
+            "filename": "val/official/01255.h5"
+        },
+        {
+            "filename": "val/official/00521.h5"
+        },
+        {
+            "filename": "val/official/00762.h5"
+        },
+        {
+            "filename": "val/official/00971.h5"
+        },
+        {
+            "filename": "val/official/00870.h5"
+        },
+        {
+            "filename": "val/official/01082.h5"
+        },
+        {
+            "filename": "val/official/01208.h5"
+        },
+        {
+            "filename": "val/official/01100.h5"
+        },
+        {
+            "filename": "val/official/00311.h5"
+        },
+        {
+            "filename": "val/official/00617.h5"
+        },
+        {
+            "filename": "val/official/00565.h5"
+        },
+        {
+            "filename": "val/official/00171.h5"
+        },
+        {
+            "filename": "val/official/00801.h5"
+        },
+        {
+            "filename": "val/official/00040.h5"
+        },
+        {
+            "filename": "val/official/01347.h5"
+        },
+        {
+            "filename": "val/official/01279.h5"
+        },
+        {
+            "filename": "val/official/00570.h5"
+        },
+        {
+            "filename": "val/official/01421.h5"
+        },
+        {
+            "filename": "val/official/00560.h5"
+        },
+        {
+            "filename": "val/official/00018.h5"
+        },
+        {
+            "filename": "val/official/00181.h5"
+        },
+        {
+            "filename": "val/official/00154.h5"
+        },
+        {
+            "filename": "val/official/00569.h5"
+        },
+        {
+            "filename": "val/official/00175.h5"
+        },
+        {
+            "filename": "val/official/00062.h5"
+        },
+        {
+            "filename": "val/official/00781.h5"
+        },
+        {
+            "filename": "val/official/01409.h5"
+        },
+        {
+            "filename": "val/official/01205.h5"
+        },
+        {
+            "filename": "val/official/00592.h5"
+        },
+        {
+            "filename": "val/official/00686.h5"
+        },
+        {
+            "filename": "val/official/01156.h5"
+        },
+        {
+            "filename": "val/official/00551.h5"
+        },
+        {
+            "filename": "val/official/01447.h5"
+        },
+        {
+            "filename": "val/official/00332.h5"
+        },
+        {
+            "filename": "val/official/01303.h5"
+        },
+        {
+            "filename": "val/official/01314.h5"
+        },
+        {
+            "filename": "val/official/01136.h5"
+        },
+        {
+            "filename": "val/official/00605.h5"
+        },
+        {
+            "filename": "val/official/01386.h5"
+        },
+        {
+            "filename": "val/official/00992.h5"
+        },
+        {
+            "filename": "val/official/00509.h5"
+        },
+        {
+            "filename": "val/official/00209.h5"
+        },
+        {
+            "filename": "val/official/00212.h5"
+        },
+        {
+            "filename": "val/official/01075.h5"
+        },
+        {
+            "filename": "val/official/00837.h5"
+        },
+        {
+            "filename": "val/official/01449.h5"
+        },
+        {
+            "filename": "val/official/01001.h5"
+        },
+        {
+            "filename": "val/official/01127.h5"
+        },
+        {
+            "filename": "val/official/00132.h5"
+        },
+        {
+            "filename": "val/official/00220.h5"
+        },
+        {
+            "filename": "val/official/00167.h5"
+        },
+        {
+            "filename": "val/official/00975.h5"
+        },
+        {
+            "filename": "val/official/00802.h5"
+        },
+        {
+            "filename": "val/official/00282.h5"
+        },
+        {
+            "filename": "val/official/00618.h5"
+        },
+        {
+            "filename": "val/official/00511.h5"
+        },
+        {
+            "filename": "val/official/01368.h5"
+        },
+        {
+            "filename": "val/official/01249.h5"
+        },
+        {
+            "filename": "val/official/01096.h5"
+        },
+        {
+            "filename": "val/official/00357.h5"
+        },
+        {
+            "filename": "val/official/01034.h5"
+        },
+        {
+            "filename": "val/official/00472.h5"
+        },
+        {
+            "filename": "val/official/01395.h5"
+        },
+        {
+            "filename": "val/official/01119.h5"
+        },
+        {
+            "filename": "val/official/00619.h5"
+        },
+        {
+            "filename": "val/official/00186.h5"
+        },
+        {
+            "filename": "val/official/01090.h5"
+        },
+        {
+            "filename": "val/official/01275.h5"
+        },
+        {
+            "filename": "val/official/01412.h5"
+        },
+        {
+            "filename": "val/official/00127.h5"
+        },
+        {
+            "filename": "val/official/01256.h5"
+        },
+        {
+            "filename": "val/official/00034.h5"
+        },
+        {
+            "filename": "val/official/00208.h5"
+        },
+        {
+            "filename": "val/official/00591.h5"
+        },
+        {
+            "filename": "val/official/00435.h5"
+        },
+        {
+            "filename": "val/official/01369.h5"
+        },
+        {
+            "filename": "val/official/01394.h5"
+        },
+        {
+            "filename": "val/official/01151.h5"
+        },
+        {
+            "filename": "val/official/00550.h5"
+        },
+        {
+            "filename": "val/official/00973.h5"
+        },
+        {
+            "filename": "val/official/01408.h5"
+        },
+        {
+            "filename": "val/official/00433.h5"
+        },
+        {
+            "filename": "val/official/00918.h5"
+        },
+        {
+            "filename": "val/official/00009.h5"
+        },
+        {
+            "filename": "val/official/00947.h5"
+        },
+        {
+            "filename": "val/official/00663.h5"
+        },
+        {
+            "filename": "val/official/01103.h5"
+        },
+        {
+            "filename": "val/official/00697.h5"
+        },
+        {
+            "filename": "val/official/01354.h5"
+        },
+        {
+            "filename": "val/official/01157.h5"
+        },
+        {
+            "filename": "val/official/00395.h5"
+        },
+        {
+            "filename": "val/official/01332.h5"
+        },
+        {
+            "filename": "val/official/00717.h5"
+        },
+        {
+            "filename": "val/official/00557.h5"
+        },
+        {
+            "filename": "val/official/00153.h5"
+        },
+        {
+            "filename": "val/official/01258.h5"
+        },
+        {
+            "filename": "val/official/01340.h5"
+        },
+        {
+            "filename": "val/official/00764.h5"
+        },
+        {
+            "filename": "val/official/00137.h5"
+        },
+        {
+            "filename": "val/official/01299.h5"
+        },
+        {
+            "filename": "val/official/01147.h5"
+        },
+        {
+            "filename": "val/official/01182.h5"
+        },
+        {
+            "filename": "val/official/01230.h5"
+        },
+        {
+            "filename": "val/official/00411.h5"
+        },
+        {
+            "filename": "val/official/01298.h5"
+        },
+        {
+            "filename": "val/official/01195.h5"
+        },
+        {
+            "filename": "val/official/00191.h5"
+        },
+        {
+            "filename": "val/official/00475.h5"
+        },
+        {
+            "filename": "val/official/00176.h5"
+        },
+        {
+            "filename": "val/official/01401.h5"
+        },
+        {
+            "filename": "val/official/00582.h5"
+        },
+        {
+            "filename": "val/official/00976.h5"
+        },
+        {
+            "filename": "val/official/00310.h5"
+        },
+        {
+            "filename": "val/official/00613.h5"
+        },
+        {
+            "filename": "val/official/00086.h5"
+        },
+        {
+            "filename": "val/official/00192.h5"
+        },
+        {
+            "filename": "val/official/01023.h5"
+        },
+        {
+            "filename": "val/official/00766.h5"
+        },
+        {
+            "filename": "val/official/00651.h5"
+        },
+        {
+            "filename": "val/official/00525.h5"
+        },
+        {
+            "filename": "val/official/01257.h5"
+        },
+        {
+            "filename": "val/official/00593.h5"
+        },
+        {
+            "filename": "val/official/01278.h5"
+        },
+        {
+            "filename": "val/official/00966.h5"
+        },
+        {
+            "filename": "val/official/00331.h5"
+        },
+        {
+            "filename": "val/official/00726.h5"
+        },
+        {
+            "filename": "val/official/01107.h5"
+        },
+        {
+            "filename": "val/official/01216.h5"
+        },
+        {
+            "filename": "val/official/00183.h5"
+        },
+        {
+            "filename": "val/official/00028.h5"
+        },
+        {
+            "filename": "val/official/01108.h5"
+        },
+        {
+            "filename": "val/official/00222.h5"
+        },
+        {
+            "filename": "val/official/00184.h5"
+        },
+        {
+            "filename": "val/official/01289.h5"
+        },
+        {
+            "filename": "val/official/01441.h5"
+        },
+        {
+            "filename": "val/official/01389.h5"
+        },
+        {
+            "filename": "val/official/00823.h5"
+        },
+        {
+            "filename": "val/official/01331.h5"
+        },
+        {
+            "filename": "val/official/00607.h5"
+        },
+        {
+            "filename": "val/official/00860.h5"
+        },
+        {
+            "filename": "val/official/00694.h5"
+        },
+        {
+            "filename": "val/official/00189.h5"
+        },
+        {
+            "filename": "val/official/00559.h5"
+        },
+        {
+            "filename": "val/official/01012.h5"
+        },
+        {
+            "filename": "val/official/00673.h5"
+        },
+        {
+            "filename": "val/official/00835.h5"
+        },
+        {
+            "filename": "val/official/00387.h5"
+        },
+        {
+            "filename": "val/official/00734.h5"
+        },
+        {
+            "filename": "val/official/01165.h5"
+        },
+        {
+            "filename": "val/official/01227.h5"
+        },
+        {
+            "filename": "val/official/00777.h5"
+        },
+        {
+            "filename": "val/official/00658.h5"
+        },
+        {
+            "filename": "val/official/00015.h5"
+        },
+        {
+            "filename": "val/official/00784.h5"
+        },
+        {
+            "filename": "val/official/00994.h5"
+        },
+        {
+            "filename": "val/official/00680.h5"
+        },
+        {
+            "filename": "val/official/00386.h5"
+        },
+        {
+            "filename": "val/official/01126.h5"
+        },
+        {
+            "filename": "val/official/00782.h5"
+        },
+        {
+            "filename": "val/official/00129.h5"
+        },
+        {
+            "filename": "val/official/01129.h5"
+        },
+        {
+            "filename": "val/official/01083.h5"
+        },
+        {
+            "filename": "val/official/00174.h5"
+        },
+        {
+            "filename": "val/official/01184.h5"
+        },
+        {
+            "filename": "val/official/01260.h5"
+        },
+        {
+            "filename": "val/official/01092.h5"
+        },
+        {
+            "filename": "val/official/00131.h5"
+        },
+        {
+            "filename": "val/official/00862.h5"
+        },
+        {
+            "filename": "val/official/01155.h5"
+        },
+        {
+            "filename": "val/official/00188.h5"
+        },
+        {
+            "filename": "val/official/00351.h5"
+        },
+        {
+            "filename": "val/official/00358.h5"
+        },
+        {
+            "filename": "val/official/00728.h5"
+        },
+        {
+            "filename": "val/official/00273.h5"
+        },
+        {
+            "filename": "val/official/00842.h5"
+        },
+        {
+            "filename": "val/official/00445.h5"
+        },
+        {
+            "filename": "val/official/00264.h5"
+        },
+        {
+            "filename": "val/official/00811.h5"
+        },
+        {
+            "filename": "val/official/00767.h5"
+        },
+        {
+            "filename": "val/official/01049.h5"
+        },
+        {
+            "filename": "val/official/01254.h5"
+        },
+        {
+            "filename": "val/official/00633.h5"
+        },
+        {
+            "filename": "val/official/01181.h5"
+        },
+        {
+            "filename": "val/official/00325.h5"
+        },
+        {
+            "filename": "val/official/01101.h5"
+        },
+        {
+            "filename": "val/official/01102.h5"
+        },
+        {
+            "filename": "val/official/01388.h5"
+        },
+        {
+            "filename": "val/official/00047.h5"
+        },
+        {
+            "filename": "val/official/00118.h5"
+        },
+        {
+            "filename": "val/official/01307.h5"
+        },
+        {
+            "filename": "val/official/01448.h5"
+        },
+        {
+            "filename": "val/official/01010.h5"
+        },
+        {
+            "filename": "val/official/00355.h5"
+        },
+        {
+            "filename": "val/official/00041.h5"
+        },
+        {
+            "filename": "val/official/00002.h5"
+        },
+        {
+            "filename": "val/official/01293.h5"
+        },
+        {
+            "filename": "val/official/00933.h5"
+        },
+        {
+            "filename": "val/official/00172.h5"
+        }
+    ],
+    "val": [
+        {
+            "filename": "train/bedroom_0034/00441.h5"
+        },
+        {
+            "filename": "train/office_0012/00186.h5"
+        },
+        {
+            "filename": "train/bathroom_0006/00121.h5"
+        },
+        {
+            "filename": "train/living_room_0040/00031.h5"
+        },
+        {
+            "filename": "train/study_0006/00051.h5"
+        },
+        {
+            "filename": "train/office_0004/00661.h5"
+        },
+        {
+            "filename": "train/kitchen_0035b/00001.h5"
+        },
+        {
+            "filename": "train/dining_room_0034/00381.h5"
+        },
+        {
+            "filename": "train/living_room_0019/00381.h5"
+        },
+        {
+            "filename": "train/dining_room_0012/00371.h5"
+        },
+        {
+            "filename": "train/bedroom_0052/00286.h5"
+        },
+        {
+            "filename": "train/bathroom_0033/00226.h5"
+        },
+        {
+            "filename": "train/bedroom_0126/00281.h5"
+        },
+        {
+            "filename": "train/dining_room_0031/02451.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002d/00296.h5"
+        },
+        {
+            "filename": "train/bedroom_0140/00091.h5"
+        },
+        {
+            "filename": "train/dining_room_0023/01196.h5"
+        },
+        {
+            "filename": "train/office_0011/01141.h5"
+        },
+        {
+            "filename": "train/dining_room_0024/00701.h5"
+        },
+        {
+            "filename": "train/bedroom_0132/00026.h5"
+        },
+        {
+            "filename": "train/playroom_0006/00191.h5"
+        },
+        {
+            "filename": "train/living_room_0018/01356.h5"
+        },
+        {
+            "filename": "train/bathroom_0041/00501.h5"
+        },
+        {
+            "filename": "train/kitchen_0017/00351.h5"
+        },
+        {
+            "filename": "train/classroom_0022/00001.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001b/00326.h5"
+        },
+        {
+            "filename": "train/kitchen_0051/01041.h5"
+        },
+        {
+            "filename": "train/home_office_0013/00121.h5"
+        },
+        {
+            "filename": "train/living_room_0063/01221.h5"
+        },
+        {
+            "filename": "train/playroom_0003/01411.h5"
+        },
+        {
+            "filename": "train/kitchen_0049/00566.h5"
+        },
+        {
+            "filename": "train/living_room_0046b/00816.h5"
+        },
+        {
+            "filename": "train/office_kitchen_0003/00781.h5"
+        },
+        {
+            "filename": "train/bathroom_0048/00666.h5"
+        },
+        {
+            "filename": "train/bedroom_0098/00176.h5"
+        },
+        {
+            "filename": "train/living_room_0018/01321.h5"
+        },
+        {
+            "filename": "train/bedroom_0071/00536.h5"
+        },
+        {
+            "filename": "train/kitchen_0035b/00561.h5"
+        },
+        {
+            "filename": "train/office_0006/00231.h5"
+        },
+        {
+            "filename": "train/dining_room_0037/00336.h5"
+        },
+        {
+            "filename": "train/kitchen_0016/00226.h5"
+        },
+        {
+            "filename": "train/bedroom_0071/00361.h5"
+        },
+        {
+            "filename": "train/excercise_room_0001/00026.h5"
+        },
+        {
+            "filename": "train/bedroom_0076b/00976.h5"
+        },
+        {
+            "filename": "train/kitchen_0045a/00491.h5"
+        },
+        {
+            "filename": "train/living_room_0062/00556.h5"
+        },
+        {
+            "filename": "train/cafe_0001a/00471.h5"
+        },
+        {
+            "filename": "train/office_0003/00201.h5"
+        },
+        {
+            "filename": "train/living_room_0038/00266.h5"
+        },
+        {
+            "filename": "train/kitchen_0010/00411.h5"
+        },
+        {
+            "filename": "train/dining_room_0033/00166.h5"
+        },
+        {
+            "filename": "train/kitchen_0011a/00576.h5"
+        },
+        {
+            "filename": "train/office_0026/00411.h5"
+        },
+        {
+            "filename": "train/living_room_0040/01446.h5"
+        },
+        {
+            "filename": "train/living_room_0047b/00376.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001g/00406.h5"
+        },
+        {
+            "filename": "train/home_office_0006/00796.h5"
+        },
+        {
+            "filename": "train/kitchen_0031/01341.h5"
+        },
+        {
+            "filename": "train/bedroom_0041/00351.h5"
+        },
+        {
+            "filename": "train/living_room_0010/01181.h5"
+        },
+        {
+            "filename": "train/bedroom_0129/00431.h5"
+        },
+        {
+            "filename": "train/classroom_0006/00981.h5"
+        },
+        {
+            "filename": "train/bathroom_0053/00131.h5"
+        },
+        {
+            "filename": "train/living_room_0085/00316.h5"
+        },
+        {
+            "filename": "train/bedroom_0082/00001.h5"
+        },
+        {
+            "filename": "train/kitchen_0053/00736.h5"
+        },
+        {
+            "filename": "train/dining_room_0029/00891.h5"
+        },
+        {
+            "filename": "train/bedroom_0040/00281.h5"
+        },
+        {
+            "filename": "train/dining_room_0037/00901.h5"
+        },
+        {
+            "filename": "train/kitchen_0033/01291.h5"
+        },
+        {
+            "filename": "train/kitchen_0051/01096.h5"
+        },
+        {
+            "filename": "train/bathroom_0028/01211.h5"
+        },
+        {
+            "filename": "train/reception_room_0004/00196.h5"
+        },
+        {
+            "filename": "train/kitchen_0019b/00216.h5"
+        },
+        {
+            "filename": "train/bathroom_0019/00636.h5"
+        },
+        {
+            "filename": "train/kitchen_0003/00176.h5"
+        },
+        {
+            "filename": "train/dining_room_0023/00201.h5"
+        },
+        {
+            "filename": "train/dining_room_0001b/00461.h5"
+        },
+        {
+            "filename": "train/bathroom_0028/00176.h5"
+        },
+        {
+            "filename": "train/bedroom_0034/00011.h5"
+        },
+        {
+            "filename": "train/living_room_0005/00056.h5"
+        },
+        {
+            "filename": "train/kitchen_0050/00501.h5"
+        },
+        {
+            "filename": "train/office_0009/00216.h5"
+        },
+        {
+            "filename": "train/bedroom_0062/00911.h5"
+        },
+        {
+            "filename": "train/office_0019/00256.h5"
+        },
+        {
+            "filename": "train/living_room_0019/01446.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001d/01691.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001d/01061.h5"
+        },
+        {
+            "filename": "train/study_0008/00016.h5"
+        },
+        {
+            "filename": "train/living_room_0039/00311.h5"
+        },
+        {
+            "filename": "train/kitchen_0017/00111.h5"
+        },
+        {
+            "filename": "train/reception_room_0001b/00301.h5"
+        },
+        {
+            "filename": "train/kitchen_0045b/00961.h5"
+        },
+        {
+            "filename": "train/living_room_0042b/00261.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001b/00511.h5"
+        },
+        {
+            "filename": "train/study_room_0004/00261.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002d/00216.h5"
+        },
+        {
+            "filename": "train/kitchen_0037/00386.h5"
+        },
+        {
+            "filename": "train/home_storage_0001/00431.h5"
+        },
+        {
+            "filename": "train/dining_room_0015/01491.h5"
+        },
+        {
+            "filename": "train/kitchen_0060/01066.h5"
+        },
+        {
+            "filename": "train/bedroom_0004/00786.h5"
+        },
+        {
+            "filename": "train/bedroom_0072/00461.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001d/01706.h5"
+        },
+        {
+            "filename": "train/bedroom_0098/00531.h5"
+        },
+        {
+            "filename": "train/office_0021/00146.h5"
+        },
+        {
+            "filename": "train/kitchen_0011a/00951.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001d/00971.h5"
+        },
+        {
+            "filename": "train/kitchen_0059/00126.h5"
+        },
+        {
+            "filename": "train/living_room_0040/01106.h5"
+        },
+        {
+            "filename": "train/bedroom_0026/00616.h5"
+        },
+        {
+            "filename": "train/dining_room_0034/00316.h5"
+        },
+        {
+            "filename": "train/dining_room_0012/01046.h5"
+        },
+        {
+            "filename": "train/bedroom_0053/00421.h5"
+        },
+        {
+            "filename": "train/kitchen_0045b/00261.h5"
+        },
+        {
+            "filename": "train/bedroom_0012/00061.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002a/00546.h5"
+        },
+        {
+            "filename": "train/classroom_0012/00106.h5"
+        },
+        {
+            "filename": "train/living_room_0020/01346.h5"
+        },
+        {
+            "filename": "train/living_room_0083/00646.h5"
+        },
+        {
+            "filename": "train/bedroom_0047/00221.h5"
+        },
+        {
+            "filename": "train/living_room_0062/00356.h5"
+        },
+        {
+            "filename": "train/bedroom_0107/00196.h5"
+        },
+        {
+            "filename": "train/cafe_0001b/00411.h5"
+        },
+        {
+            "filename": "train/office_0026/00021.h5"
+        },
+        {
+            "filename": "train/reception_room_0002/00156.h5"
+        },
+        {
+            "filename": "train/kitchen_0037/00816.h5"
+        },
+        {
+            "filename": "train/bedroom_0034/00886.h5"
+        },
+        {
+            "filename": "train/bedroom_0079/00026.h5"
+        },
+        {
+            "filename": "train/bedroom_0086/00191.h5"
+        },
+        {
+            "filename": "train/cafe_0001c/00261.h5"
+        },
+        {
+            "filename": "train/home_office_0006/00356.h5"
+        },
+        {
+            "filename": "train/home_storage_0001/00111.h5"
+        },
+        {
+            "filename": "train/bathroom_0045b/00136.h5"
+        },
+        {
+            "filename": "train/study_0006/00186.h5"
+        },
+        {
+            "filename": "train/living_room_0067/00261.h5"
+        },
+        {
+            "filename": "train/kitchen_0028b/00211.h5"
+        },
+        {
+            "filename": "train/kitchen_0043/00851.h5"
+        },
+        {
+            "filename": "train/dining_room_0015/00091.h5"
+        },
+        {
+            "filename": "train/kitchen_0045b/00871.h5"
+        },
+        {
+            "filename": "train/living_room_0085/00131.h5"
+        },
+        {
+            "filename": "train/office_kitchen_0003/00516.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002a/01811.h5"
+        },
+        {
+            "filename": "train/bedroom_0014/00351.h5"
+        },
+        {
+            "filename": "train/dining_room_0015/00811.h5"
+        },
+        {
+            "filename": "train/kitchen_0003/00481.h5"
+        },
+        {
+            "filename": "train/cafe_0001c/00686.h5"
+        },
+        {
+            "filename": "train/dining_room_0013/00701.h5"
+        },
+        {
+            "filename": "train/bedroom_0090/00046.h5"
+        },
+        {
+            "filename": "train/home_office_0005/00871.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001b/00536.h5"
+        },
+        {
+            "filename": "train/living_room_0029/00526.h5"
+        },
+        {
+            "filename": "train/bathroom_0039/00461.h5"
+        },
+        {
+            "filename": "train/living_room_0078/00601.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002d/00266.h5"
+        },
+        {
+            "filename": "train/kitchen_0050/00551.h5"
+        },
+        {
+            "filename": "train/bathroom_0014b/00501.h5"
+        },
+        {
+            "filename": "train/home_office_0013/00111.h5"
+        },
+        {
+            "filename": "train/living_room_0020/00086.h5"
+        },
+        {
+            "filename": "train/kitchen_0050/01096.h5"
+        },
+        {
+            "filename": "train/dining_room_0013/00066.h5"
+        },
+        {
+            "filename": "train/basement_0001a/00211.h5"
+        },
+        {
+            "filename": "train/bedroom_0050/00076.h5"
+        },
+        {
+            "filename": "train/home_office_0004/00686.h5"
+        },
+        {
+            "filename": "train/bathroom_0005/00051.h5"
+        },
+        {
+            "filename": "train/bedroom_0017/00721.h5"
+        },
+        {
+            "filename": "train/bedroom_0120/00441.h5"
+        },
+        {
+            "filename": "train/kitchen_0041/00121.h5"
+        },
+        {
+            "filename": "train/home_storage_0001/00291.h5"
+        },
+        {
+            "filename": "train/living_room_0063/00236.h5"
+        },
+        {
+            "filename": "train/living_room_0086b/00146.h5"
+        },
+        {
+            "filename": "train/office_0011/01021.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002c/00486.h5"
+        },
+        {
+            "filename": "train/dining_room_0001b/00021.h5"
+        },
+        {
+            "filename": "train/living_room_0047a/00176.h5"
+        },
+        {
+            "filename": "train/bedroom_0106/00936.h5"
+        },
+        {
+            "filename": "train/kitchen_0050/00886.h5"
+        },
+        {
+            "filename": "train/bedroom_0033/00061.h5"
+        },
+        {
+            "filename": "train/office_0026/00831.h5"
+        },
+        {
+            "filename": "train/living_room_0047b/01066.h5"
+        },
+        {
+            "filename": "train/printer_room_0001/00181.h5"
+        },
+        {
+            "filename": "train/reception_room_0002/00686.h5"
+        },
+        {
+            "filename": "train/bedroom_0120/00166.h5"
+        },
+        {
+            "filename": "train/dining_room_0008/00751.h5"
+        },
+        {
+            "filename": "train/living_room_0047b/00791.h5"
+        },
+        {
+            "filename": "train/kitchen_0051/01316.h5"
+        },
+        {
+            "filename": "train/bedroom_0136/00531.h5"
+        },
+        {
+            "filename": "train/office_kitchen_0001a/00556.h5"
+        },
+        {
+            "filename": "train/bedroom_0076a/00031.h5"
+        },
+        {
+            "filename": "train/bedroom_0034/00176.h5"
+        },
+        {
+            "filename": "train/bedroom_0081/00081.h5"
+        },
+        {
+            "filename": "train/bedroom_0106/00646.h5"
+        },
+        {
+            "filename": "train/living_room_0010/00671.h5"
+        },
+        {
+            "filename": "train/furniture_store_0001d/01396.h5"
+        },
+        {
+            "filename": "train/living_room_0029/00031.h5"
+        },
+        {
+            "filename": "train/bedroom_0062/00771.h5"
+        },
+        {
+            "filename": "train/kitchen_0051/02001.h5"
+        },
+        {
+            "filename": "train/bedroom_0052/00561.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002a/02521.h5"
+        },
+        {
+            "filename": "train/furniture_store_0002b/01631.h5"
+        }
+    ]
+}
