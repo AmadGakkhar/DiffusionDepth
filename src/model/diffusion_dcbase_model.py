@@ -110,7 +110,7 @@ class Diffusion_DCbase_Model(nn.Module):
         return dense_depth
 
     def extract_depth(self, img, depth_map, depth_mask, gt_depth_map, return_loss, img_metas, weight_map=None,
-                      instance_masks=None, **kwargs):
+                      instance_masks=None, semantic=None, **kwargs):
         if self.ip_basic:
             return self._extract_depth_ipbasic(img, depth_map, depth_mask, img_metas)
         # 用传统算法进行的深度补全
@@ -125,7 +125,7 @@ class Diffusion_DCbase_Model(nn.Module):
         fp = self.depth_backbone(img)
         ret = self.depth_head(fp, depth_map, depth_mask, gt_depth_map=gt_depth_map, return_loss=return_loss,
                               weight_map=weight_map, instance_masks=instance_masks,
-                              image=img,
+                              image=img, semantic=semantic,
                               **kwargs)
         # if return_loss: 
             # return ret

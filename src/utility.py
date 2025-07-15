@@ -132,8 +132,11 @@ def make_optimizer_scheduler_split(args, target):
 
 def backup_source_code(backup_directory):
     ignore_hidden = shutil.ignore_patterns(
-        ".", "..", ".git*", "*pycache*", "*build", "*.fuse*", "*_drive_*",
-        "*pretrained*")
+        '.git*', '*__pycache__*', '*build*', '*.fuse*', '*_drive_*',
+        '*pretrained*', '*.tar.gz', '*.h5',        # large blobs
+        'experiments'                              # avoid recursive copy
+    )
+    # ignore=shutil.ignore_patterns('.tar.gz', '.h5')
 
     if os.path.exists(backup_directory):
         shutil.rmtree(backup_directory)

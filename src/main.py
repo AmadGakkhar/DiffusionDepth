@@ -152,7 +152,7 @@ def train(gpu, args):
     summary = get_summary(args)
 
     if gpu == 0:
-        utility.backup_source_code(args.save_dir + '/code')
+        # utility.backup_source_code(args.save_dir + '/code')
         try:
             os.makedirs(args.save_dir, exist_ok=True)
             os.makedirs(args.save_dir + '/train', exist_ok=True)

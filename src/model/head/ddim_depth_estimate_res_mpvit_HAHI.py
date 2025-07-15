@@ -80,6 +80,9 @@ class DDIMDepthEstimate_MPVIT_ADDHAHI(BaseDepthRefine):
                     )
                 )
 
+        self.sem_embed = nn.Embedding(40, 64)  # 40 classes to 64-dim
+        self.sem_mod = nn.Conv2d(64, channels_in*2, 1)  # To scale/bias (512*2 if channels_in=256)
+
 
     def forward(self, fp, depth_map, depth_mask, gt_depth_map=None, return_loss=False, **kwargs):
         """

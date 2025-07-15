@@ -1,0 +1,1 @@
+python main.py --data_name NYU --dir_data /mnt/semantic_data/ --split_json ../data_json/nyu_sampled.json --save experiments/semantic_depth --max_depth 10.0 --augment True --batch_size 24 --epochs 2 --gpus 0 --opt_level O0 --warm_up --seed 42 --model_name Diffusion_DCbase_ --head_specify DDIMDepthEstimate_Res

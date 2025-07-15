@@ -135,6 +135,13 @@ class NYU(BaseDataset):
             K = self.K.clone()
             K[0] = K[0] * _scale
             K[1] = K[1] * _scale
+
+            semantic_h5 = f['semantic_map'][:].astype('uint8')
+            semantic = Image.fromarray(semantic_h5, mode='L')
+
+            t_sem = T.Compose([T.Resize(scale), T.CenterCrop(self.crop_size), self.ToNumpy(), T.ToTensor()])
+            semantic = t_sem(semantic)
+
         else:
             t_rgb = T.Compose([
                 T.Resize(self.height),
@@ -155,6 +162,12 @@ class NYU(BaseDataset):
 
             K = self.K.clone()
 
+            semantic_h5 = f['semantic_map'][:].astype('uint8')
+            semantic = Image.fromarray(semantic_h5, mode='L')
+
+            t_sem = T.Compose([T.Resize(self.height), T.CenterCrop(self.crop_size), self.ToNumpy(), T.ToTensor()])
+            semantic = t_sem(semantic)
+
         dep_sp = self.get_sparse_depth(dep, self.args.num_sample)
 
         """
@@ -170,7 +183,7 @@ class NYU(BaseDataset):
             depth_maps.append(depth_map)
         depth_maps = np.stack(depth_maps)  # bs, h, w
 
-        output = {'rgb': rgb, 'dep': dep_sp, 'gt': dep, 'K': K, 'depth_mask': depth_mask, 'depth_map': depth_maps}
+        output = {'rgb': rgb, 'dep': dep_sp, 'gt': dep, 'K': K, 'depth_mask': depth_mask, 'depth_map': depth_maps, 'semantic': semantic}
 
         return output
 
