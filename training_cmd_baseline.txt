@@ -17,7 +17,7 @@ python main.py \
 python main.py \
     --dir_data /mnt/semantic_data \
     --data_name NYU \
-    --split_json ../data_json/nyu_sampled.json \
+    --split_json ../data_json/nyu.json \
     --save NYU_Res50_Semantic_train \
     --model_name Diffusion_DCbase_ \
     --backbone_module mmbev_resnet \
