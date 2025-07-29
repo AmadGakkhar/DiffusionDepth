@@ -14,13 +14,12 @@ python main.py \
     --max_depth 10.0
 
 
-
-    python main.py \
+python main.py \
     --dir_data /mnt/semantic_data \
     --data_name NYU \
-    --split_json data_json/nyu_sampled.json \
+    --split_json ../data_json/nyu_sampled.json \
     --save NYU_Res50_Semantic_train \
-    --model_name Diffusion_DCbase_Model \
+    --model_name Diffusion_DCbase_ \
     --backbone_module mmbev_resnet \
     --backbone_name mmbev_res50 \
     --head_specify DDIMDepthEstimate_Res \
