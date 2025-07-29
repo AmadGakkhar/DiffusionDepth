@@ -1,0 +1,22 @@
+Unique semantic labels: [ 0  1  2  4  5  6  8  9 13 14 15 20 21 22 25 28 34 38 39]
+Number of unique labels: 19
+Label counts:
+  Label 0: 62266 pixels (20.27%)
+  Label 1: 36402 pixels (11.85%)
+  Label 2: 40144 pixels (13.07%)
+  Label 4: 36308 pixels (11.82%)
+  Label 5: 387 pixels (0.13%)
+  Label 6: 6257 pixels (2.04%)
+  Label 8: 36062 pixels (11.74%)
+  Label 9: 2 pixels (0.00%)
+  Label 13: 2937 pixels (0.96%)
+  Label 14: 310 pixels (0.10%)
+  Label 15: 28 pixels (0.01%)
+  Label 20: 4277 pixels (1.39%)
+  Label 21: 7 pixels (0.00%)
+  Label 22: 9944 pixels (3.24%)
+  Label 25: 8572 pixels (2.79%)
+  Label 28: 772 pixels (0.25%)
+  Label 34: 111 pixels (0.04%)
+  Label 38: 10157 pixels (3.31%)
+  Label 39: 52257 pixels (17.01%)

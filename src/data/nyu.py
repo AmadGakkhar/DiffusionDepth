@@ -25,6 +25,7 @@ import torch
 import torchvision.transforms as T
 import torchvision.transforms.functional as TF
 from model.ops.depth_map_proc import simple_depth_completion 
+import torch.nn.functional as F
 
 warnings.filterwarnings("ignore", category=UserWarning)
 
@@ -95,9 +96,13 @@ class NYU(BaseDataset):
         f = h5py.File(path_file, 'r')
         rgb_h5 = f['rgb'][:].transpose(1, 2, 0)
         dep_h5 = f['depth'][:]
+        # Load semantic mask (integer labels 0-39) from HDF5 file
+        sem_h5 = f['semantic_map'][:]
 
         rgb = Image.fromarray(rgb_h5, mode='RGB')
         dep = Image.fromarray(dep_h5.astype('float32'), mode='F')
+        # Semantic mask is single channel with integer class labels
+        sem = Image.fromarray(sem_h5.astype('uint8'), mode='L')
 
         if self.augment and self.mode == 'train':
             _scale = np.random.uniform(1.0, 1.5)
@@ -108,9 +113,11 @@ class NYU(BaseDataset):
             if flip > 0.5:
                 rgb = TF.hflip(rgb)
                 dep = TF.hflip(dep)
+                sem = TF.hflip(sem)
 
             rgb = TF.rotate(rgb, angle=degree, resample=Image.NEAREST)
             dep = TF.rotate(dep, angle=degree, resample=Image.NEAREST)
+            sem = TF.rotate(sem, angle=degree, resample=Image.NEAREST)
 
             t_rgb = T.Compose([
                 T.Resize(scale),
@@ -127,8 +134,18 @@ class NYU(BaseDataset):
                 T.ToTensor()
             ])
 
+            t_sem = T.Compose([
+                T.Resize(scale, interpolation=Image.NEAREST),
+                T.CenterCrop(self.crop_size),
+                self.ToNumpy()
+            ])
+
             rgb = t_rgb(rgb)
             dep = t_dep(dep)
+            sem_np = t_sem(sem).astype(np.int64)  # H x W integer labels
+            sem_tensor = torch.from_numpy(sem_np)
+            # One-hot encode to 40 channels and convert to C x H x W float tensor
+            sem_onehot = F.one_hot(sem_tensor, num_classes=40).permute(2, 0, 1).float()
 
             dep = dep / _scale
 
@@ -150,8 +167,17 @@ class NYU(BaseDataset):
                 T.ToTensor()
             ])
 
+            t_sem = T.Compose([
+                T.Resize(self.height, interpolation=Image.NEAREST),
+                T.CenterCrop(self.crop_size),
+                self.ToNumpy()
+            ])
+
             rgb = t_rgb(rgb)
             dep = t_dep(dep)
+            sem_np = t_sem(sem).astype(np.int64)
+            sem_tensor = torch.from_numpy(sem_np)
+            sem_onehot = F.one_hot(sem_tensor, num_classes=40).permute(2, 0, 1).float()
 
             K = self.K.clone()
 
@@ -170,7 +196,9 @@ class NYU(BaseDataset):
             depth_maps.append(depth_map)
         depth_maps = np.stack(depth_maps)  # bs, h, w
 
-        output = {'rgb': rgb, 'dep': dep_sp, 'gt': dep, 'K': K, 'depth_mask': depth_mask, 'depth_map': depth_maps}
+        output = {'rgb': rgb, 'dep': dep_sp, 'gt': dep, 'K': K,
+                  'depth_mask': depth_mask, 'depth_map': depth_maps,
+                  'semantic_map': sem_onehot}
 
         return output
 
