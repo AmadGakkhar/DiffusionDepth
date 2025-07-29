@@ -173,22 +173,22 @@ class IdentityMMBEV(nn.Module):
         return x_tmp
 
 
-def mmbev_res18():
-    net = ResNetForMMBEV(3, num_layer=[2, 2, 2, 2], num_channels=[64, 128, 256, 512], stride=[2, 2, 2, 2],
+def mmbev_res18(numC_input=3):
+    net = ResNetForMMBEV(numC_input, num_layer=[2, 2, 2, 2], num_channels=[64, 128, 256, 512], stride=[2, 2, 2, 2],
                          backbone_output_ids=None, norm_cfg=dict(type='BN'),
                          with_cp=False, block_type='Basic', )
     return net
 
 
-def mmbev_res50():
-    net = ResNetForMMBEV(3, num_layer=[3, 4, 6, 3], num_channels=[64, 128, 256, 512], stride=[2, 2, 2, 2],
+def mmbev_res50(numC_input=3):
+    net = ResNetForMMBEV(numC_input, num_layer=[3, 4, 6, 3], num_channels=[64, 128, 256, 512], stride=[2, 2, 2, 2],
                          backbone_output_ids=None, norm_cfg=dict(type='BN'),
                          with_cp=False, block_type='Basic', )
     return net
 
 
-def mmbev_res101():
-    net = ResNetForMMBEV(3, num_layer= [3, 4, 23, 3], num_channels=[64, 128, 256, 512], stride=[2, 2, 2, 2],
+def mmbev_res101(numC_input=3):
+    net = ResNetForMMBEV(numC_input, num_layer= [3, 4, 23, 3], num_channels=[64, 128, 256, 512], stride=[2, 2, 2, 2],
                          backbone_output_ids=None, norm_cfg=dict(type='BN'),
                          with_cp=False, block_type='Basic', )
     return net

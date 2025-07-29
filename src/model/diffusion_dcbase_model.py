@@ -64,8 +64,9 @@ class Diffusion_DCbase_Model(nn.Module):
         self.args = args
         if depth_backbone is None:
             # self.depth_backbone = BACKBONES.build(depth_backbone_cfg)
-            self.depth_backbone = get_backbone(args)
-            self.depth_backbone = self.depth_backbone()
+            backbone_factory = get_backbone(args)
+            # Adapt the backbone to accept 43 channels (3 for RGB + 40 for semantic mask)
+            self.depth_backbone = backbone_factory(numC_input=43)
         if depth_head is None:
             try:
                 inference_steps = self.args.inference_steps
@@ -210,7 +211,21 @@ class Diffusion_DCbase_Model(nn.Module):
         Returns:
             dict: Losses of different branches.
         """
-        img_inputs = sample['rgb']
+        rgb = sample['rgb']
+        
+        # The key for the semantic map could be 'semantic' or 'semantic_map'.
+        # We use .get() to handle both possibilities gracefully.
+        semantic_map = sample.get('semantic_map', sample.get('semantic'))
+
+        if semantic_map is None:
+            # If no semantic map is provided (e.g., during inference or with old data),
+            # we create a zero-tensor to ensure the model input has the correct shape.
+            print("Warning: Semantic map not found in sample. Using a zero-filled tensor for semantic channels.")
+            semantic_map = torch.zeros(rgb.shape[0], 40, rgb.shape[2], rgb.shape[3], device=rgb.device, dtype=rgb.dtype)
+
+        # Concatenate RGB and semantic map for a 43-channel input
+        img_inputs = torch.cat([rgb, semantic_map], dim=1)
+        
         gt_depth_map = sample['gt']
         sparse_depth = sample['dep']
         # here >=0 denotes actually we do not apply depth mask if >0 we apply 
