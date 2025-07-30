@@ -280,7 +280,16 @@ def train(gpu, args):
                     'args': args
                 }
 
-            torch.save(state, '{}/model_{:05d}.pt'.format(args.save_dir, epoch))
+            # Save current checkpoint
+            current_checkpoint = '{}/model_{:05d}.pt'.format(args.save_dir, epoch)
+            torch.save(state, current_checkpoint)
+            
+            # Remove previous checkpoint to save space (if save_last_only is enabled)
+            if args.save_last_only and epoch > 1:
+                previous_checkpoint = '{}/model_{:05d}.pt'.format(args.save_dir, epoch - 1)
+                if os.path.exists(previous_checkpoint):
+                    os.remove(previous_checkpoint)
+                    print(f'Removed previous checkpoint: model_{epoch-1:05d}.pt')
 
         # Val
         torch.set_grad_enabled(False)

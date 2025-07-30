@@ -278,6 +278,10 @@ parser.add_argument('--save_raw_npdepth',
                     action='store_true',
                     default=False,
                     help='save result images only with submission format')
+parser.add_argument('--save_last_only',
+                    action='store_true',
+                    default=False,
+                    help='save only the last checkpoint to save disk space')
 
 args = parser.parse_args()
 

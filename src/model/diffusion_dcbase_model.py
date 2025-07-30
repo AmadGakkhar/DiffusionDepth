@@ -219,8 +219,10 @@ class Diffusion_DCbase_Model(nn.Module):
         # print(depth_mask)
         # print(depth_map)
 
+        semantic_data = sample.get('semantic', None)
         output_dict = self.extract_depth(img_inputs, depth_map, depth_mask, gt_depth_map, img_metas=None,
-                                       return_loss=True, weight_map=None, instance_masks=None, sparse_depth=sparse_depth)
+                                       return_loss=True, weight_map=None, instance_masks=None, 
+                                       semantic=semantic_data, sparse_depth=sparse_depth)
         return output_dict
 
 

@@ -39,6 +39,10 @@ class DDIMDepthEstimate_Res(BaseDepthRefine):
         self.diffusion_inference_steps = inference_steps
         self.scheduler = DDIMScheduler(num_train_timesteps=num_train_timesteps, clip_sample=False)
         self.pipeline = CNNDDIMPipiline(self.model, self.scheduler)
+        # Add semantic processing layers
+        self.sem_embed = nn.Embedding(40, 64)  # 40 classes to 64-dim
+        self.sem_mod = nn.Conv2d(64, channels_in*2, 1)  # To scale/bias
+        
         self.convup_fp = nn.Sequential(
                         build_upsample_layer(
                             cfg=dict(type='deconv', bias=False),
@@ -105,6 +109,16 @@ class DDIMDepthEstimate_Res(BaseDepthRefine):
         # latent_depth_mask = nn.functional.adaptive_max_pool2d(depth_mask.float(), output_size=depth_map_t.shape[-2:])
         # depth = torch.cat((depth_map_t, latent_depth_mask), dim=1)  # bs, 2, h, w if traditional bs, 1+dim, h, w if deep
         # 模型里面隐形编码了mask 哪些是真值
+        
+        # Process semantic information for FiLM modulation
+        semantic = kwargs.get('semantic', None)
+        if semantic is not None:
+            sem_feat = self.sem_embed(semantic.long().squeeze(1))  # bs,h,w -> bs,h,w,64
+            sem_feat = sem_feat.permute(0,3,1,2)  # bs,64,h,w
+            scale, bias = self.sem_mod(sem_feat).chunk(2,1)  # bs,channels_in,h,w each
+        else:
+            scale, bias = None, None
+        
         for i in range(len(fp)):
             f = fp[len(fp) - i - 1]
             x = self.conv_lateral[len(fp) - i - 1](f)
@@ -131,7 +145,9 @@ class DDIMDepthEstimate_Res(BaseDepthRefine):
                 x,
                 None,
                 None,
-                None
+                None,
+                scale,
+                bias
             ),
             num_inference_steps=self.diffusion_inference_steps,
             return_dict=False,
@@ -322,7 +338,11 @@ class ScheduledCNNRefine(BaseModule):
         )
 
     def forward(self, noisy_image, t, *args):
-        feat, blur_depth, sparse_depth, sparse_mask = args
+        if len(args) >= 6:
+            feat, blur_depth, sparse_depth, sparse_mask, scale, bias = args
+        else:
+            feat, blur_depth, sparse_depth, sparse_mask = args[:4]
+            scale, bias = None, None
         # print('debug: feat shape {}'.format(feat.shape))
         # diff = (noisy_image - blur_depth).abs()
         if t.numel() == 1:
@@ -333,6 +353,14 @@ class ScheduledCNNRefine(BaseModule):
         else:
             # print(t)
             feat = feat + self.time_embedding(t)[..., None, None]
+        
+        # Apply FiLM modulation if semantic information is available
+        if scale is not None and bias is not None:
+            # Resize scale and bias to match feat dimensions
+            scale_resized = F.interpolate(scale, size=feat.shape[-2:], mode='bilinear', align_corners=True)
+            bias_resized = F.interpolate(bias, size=feat.shape[-2:], mode='bilinear', align_corners=True)
+            feat = feat * (1 + scale_resized) + bias_resized
+        
         # layer(feat) - noise_image
         # blur_depth = self.layer(feat); 
         # ret =  a* noisy_image - b * blur_depth

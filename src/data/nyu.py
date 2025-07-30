@@ -96,6 +96,15 @@ class NYU(BaseDataset):
         rgb_h5 = f['rgb'][:].transpose(1, 2, 0)
         dep_h5 = f['depth'][:]
 
+        # Debug: Check if semantic_map exists
+        if 'semantic_map' not in f:
+            print(f"[WARNING] No 'semantic_map' in {path_file}")
+            print(f"Available keys: {list(f.keys())}")
+            # Create dummy semantic map if missing
+            semantic_h5 = np.zeros_like(dep_h5, dtype=np.uint8)
+        else:
+            semantic_h5 = f['semantic_map'][:].astype('uint8')
+
         rgb = Image.fromarray(rgb_h5, mode='RGB')
         dep = Image.fromarray(dep_h5.astype('float32'), mode='F')
 
@@ -105,12 +114,17 @@ class NYU(BaseDataset):
             degree = np.random.uniform(-5.0, 5.0)
             flip = np.random.uniform(0.0, 1.0)
 
+            # Use already loaded semantic data
+            semantic = Image.fromarray(semantic_h5, mode='L')
+
             if flip > 0.5:
                 rgb = TF.hflip(rgb)
                 dep = TF.hflip(dep)
+                semantic = TF.hflip(semantic)
 
             rgb = TF.rotate(rgb, angle=degree, resample=Image.NEAREST)
             dep = TF.rotate(dep, angle=degree, resample=Image.NEAREST)
+            semantic = TF.rotate(semantic, angle=degree, resample=Image.NEAREST)
 
             t_rgb = T.Compose([
                 T.Resize(scale),
@@ -136,13 +150,13 @@ class NYU(BaseDataset):
             K[0] = K[0] * _scale
             K[1] = K[1] * _scale
 
-            semantic_h5 = f['semantic_map'][:].astype('uint8')
-            semantic = Image.fromarray(semantic_h5, mode='L')
-
             t_sem = T.Compose([T.Resize(scale), T.CenterCrop(self.crop_size), self.ToNumpy(), T.ToTensor()])
             semantic = t_sem(semantic)
 
         else:
+            # Use already loaded semantic data
+            semantic = Image.fromarray(semantic_h5, mode='L')
+            
             t_rgb = T.Compose([
                 T.Resize(self.height),
                 T.CenterCrop(self.crop_size),
@@ -161,9 +175,6 @@ class NYU(BaseDataset):
             dep = t_dep(dep)
 
             K = self.K.clone()
-
-            semantic_h5 = f['semantic_map'][:].astype('uint8')
-            semantic = Image.fromarray(semantic_h5, mode='L')
 
             t_sem = T.Compose([T.Resize(self.height), T.CenterCrop(self.crop_size), self.ToNumpy(), T.ToTensor()])
             semantic = t_sem(semantic)

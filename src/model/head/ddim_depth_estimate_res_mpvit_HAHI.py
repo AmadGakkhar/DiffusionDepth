@@ -90,6 +90,7 @@ class DDIMDepthEstimate_MPVIT_ADDHAHI(BaseDepthRefine):
         depth_map: Tensor with shape bs, 1, h, w
         depth_mask: Tensor with shape bs, 1, h, w
         """
+
         if self.detach_fp is not False and self.detach_fp is not None:
             if isinstance(self.detach_fp, (list, tuple, range)):
                 fp = [it for it in fp]
@@ -108,6 +109,15 @@ class DDIMDepthEstimate_MPVIT_ADDHAHI(BaseDepthRefine):
         # for f in fp:
         #     print(f.shape)
         fp = self.hahineck(fp)
+        
+        # Process semantic information for FiLM modulation
+        semantic = kwargs.get('semantic', None)
+        if semantic is not None:
+            sem_feat = self.sem_embed(semantic.long().squeeze(1))  # bs,h,w -> bs,h,w,64
+            sem_feat = sem_feat.permute(0,3,1,2)  # bs,64,h,w
+            scale, bias = self.sem_mod(sem_feat).chunk(2,1)  # bs,channels_in,h,w each
+        else:
+            scale, bias = None, None
         
         for i in range(len(fp)):
             f = fp[len(fp) - i - 1]
@@ -137,7 +147,9 @@ class DDIMDepthEstimate_MPVIT_ADDHAHI(BaseDepthRefine):
                 x,
                 None,
                 None,
-                None
+                None,
+                scale,
+                bias
             ),
             num_inference_steps=self.diffusion_inference_steps,
             return_dict=False,
@@ -359,7 +371,11 @@ class ScheduledCNNRefine(BaseModule):
         )
 
     def forward(self, noisy_image, t, *args):
-        feat, blur_depth, sparse_depth, sparse_mask = args
+        if len(args) >= 6:
+            feat, blur_depth, sparse_depth, sparse_mask, scale, bias = args
+        else:
+            feat, blur_depth, sparse_depth, sparse_mask = args[:4]
+            scale, bias = None, None
         # print('debug: feat shape {}'.format(feat.shape))
         # diff = (noisy_image - blur_depth).abs()
         if t.numel() == 1:
@@ -370,6 +386,14 @@ class ScheduledCNNRefine(BaseModule):
         else:
             # print(t)
             feat = feat + self.time_embedding(t)[..., None, None]
+        
+        # Apply FiLM modulation if semantic information is available
+        if scale is not None and bias is not None:
+            # Resize scale and bias to match feat dimensions
+            scale_resized = F.interpolate(scale, size=feat.shape[-2:], mode='bilinear', align_corners=True)
+            bias_resized = F.interpolate(bias, size=feat.shape[-2:], mode='bilinear', align_corners=True)
+            feat = feat * (1 + scale_resized) + bias_resized
+        
         # layer(feat) - noise_image
         # blur_depth = self.layer(feat); 
         # ret =  a* noisy_image - b * blur_depth
