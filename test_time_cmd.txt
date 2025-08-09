@@ -15,3 +15,13 @@ python -u main.py \
   --head_specify DDIMDepthEstimate_Res \
   --inference_steps 20 \
   --opt_level O0 | tee ../experiments/baseline_time/test_timing.log
+
+
+
+  python infer_sample.py \
+  --dir_data /mnt/data/nyudepthv2 \
+  --data_name NYU \
+  --split_json /home/ubuntu/code/dd/DiffusionDepth-Orig/data_json/nyu_sampled.json \
+  --index 0 \
+  --checkpoint /home/ubuntu/code/dd/DiffusionDepth-Orig/experiments/250716_060541_NYU_Res50_train/model_00010.pt \
+  --output_dir /home/ubuntu/code/dd/DiffusionDepth-Orig/experiments/baseline_images \
