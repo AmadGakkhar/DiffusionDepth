@@ -103,7 +103,27 @@ class NYU(BaseDataset):
             # Create dummy semantic map if missing
             semantic_h5 = np.zeros_like(dep_h5, dtype=np.uint8)
         else:
-            semantic_h5 = f['semantic_map'][:].astype('uint8')
+            semantic_h5 = f['semantic_map'][:]
+
+        # Normalize semantic shape/kind
+        semantic_kind = 'label'
+        if semantic_h5.ndim == 3:
+            if semantic_h5.shape[0] > 1 and semantic_h5.shape[0] < 1000:
+                # one-hot [C,H,W]
+                semantic_h5 = np.argmax(semantic_h5, axis=0).astype('uint8')
+            elif semantic_h5.shape[2] == 1:
+                semantic_h5 = semantic_h5[..., 0].astype('uint8')
+            elif semantic_h5.shape[2] == 3:
+                semantic_kind = 'rgb'
+                semantic_h5 = semantic_h5.astype('uint8')
+        else:
+            semantic_h5 = semantic_h5.astype('uint8')
+
+        # Create PIL image accordingly
+        if semantic_kind == 'rgb':
+            semantic = Image.fromarray(semantic_h5, mode='RGB')
+        else:
+            semantic = Image.fromarray(semantic_h5, mode='L')
 
         rgb = Image.fromarray(rgb_h5, mode='RGB')
         dep = Image.fromarray(dep_h5.astype('float32'), mode='F')
@@ -150,7 +170,12 @@ class NYU(BaseDataset):
             K[0] = K[0] * _scale
             K[1] = K[1] * _scale
 
-            t_sem = T.Compose([T.Resize(scale), T.CenterCrop(self.crop_size), self.ToNumpy(), T.ToTensor()])
+            t_sem = T.Compose([
+                T.Resize(scale, interpolation=Image.NEAREST),
+                T.CenterCrop(self.crop_size),
+                self.ToNumpy(),
+                T.Lambda(lambda x: torch.from_numpy(x.astype(np.int64)).unsqueeze(0))
+            ])
             semantic = t_sem(semantic)
 
         else:
@@ -176,7 +201,12 @@ class NYU(BaseDataset):
 
             K = self.K.clone()
 
-            t_sem = T.Compose([T.Resize(self.height), T.CenterCrop(self.crop_size), self.ToNumpy(), T.ToTensor()])
+            t_sem = T.Compose([
+                T.Resize(self.height, interpolation=Image.NEAREST),
+                T.CenterCrop(self.crop_size),
+                self.ToNumpy(),
+                T.Lambda(lambda x: torch.from_numpy(x.astype(np.int64)).unsqueeze(0))
+            ])
             semantic = t_sem(semantic)
 
         dep_sp = self.get_sparse_depth(dep, self.args.num_sample)

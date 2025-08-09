@@ -15,3 +15,12 @@ python -u main.py \
   --head_specify DDIMDepthEstimate_Res \
   --inference_steps 20 \
   --opt_level O0 | tee ../experiments/late_fusion_time/test_timing.log
+
+
+python infer_sample.py \
+  --dir_data /mnt/semantic_data \
+  --data_name NYU \
+  --split_json /home/ubuntu/code/dd/DiffusionDepth-Orig/data_json/nyu_sampled.json \
+  --index 0 \
+  --checkpoint /home/ubuntu/code/dd/DiffusionDepth-Orig/experiments/250731_034741_semantic_depth_mid_fusion/model_00010.pt \
+  --output_dir /home/ubuntu/code/dd/DiffusionDepth-Orig/experiments/late_fusion_images
