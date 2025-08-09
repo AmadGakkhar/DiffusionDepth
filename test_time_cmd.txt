@@ -1,0 +1,17 @@
+python -u main.py \
+  --test_only \
+  --pretrain ../experiments/250731_034741_semantic_depth_mid_fusion/model_00010.pt \
+  --dir_data /mnt/data/nyudepthv2 \
+  --data_name NYU \
+  --split_json ../data_json/nyu.json \
+  --patch_height 228 \
+  --patch_width 304 \
+  --gpus 0 \
+  --num_threads 1 \
+  --model_name Diffusion_DCbase_ \
+  --network resnet34 \
+  --backbone_module mmbev_resnet \
+  --backbone_name mmbev_res50 \
+  --head_specify DDIMDepthEstimate_Res \
+  --inference_steps 20 \
+  --opt_level O0 | tee ../experiments/250731_034741_semantic_depth_mid_fusion/test_timing.log

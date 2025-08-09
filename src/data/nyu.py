@@ -178,7 +178,6 @@ class NYU(BaseDataset):
         channel, height, width = dep.shape
 
         assert channel == 1
-
         idx_nnz = torch.nonzero(dep.view(-1) > 0.0001, as_tuple=False)
 
         num_idx = len(idx_nnz)

@@ -224,3 +224,6 @@ class Diffusion_DCbase_Model(nn.Module):
         return output_dict
 
 
+if __name__ == "__main__":
+    model = Diffusion_DCbase_Model()
+    print(model)
