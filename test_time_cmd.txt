@@ -1,6 +1,6 @@
 python -u main.py \
   --test_only \
-  --pretrain ../experiments/250731_034741_semantic_depth_mid_fusion/model_00010.pt \
+  --pretrain ../experiments/250716_060541_NYU_Res50_train/model_00010.pt \
   --dir_data /mnt/data/nyudepthv2 \
   --data_name NYU \
   --split_json ../data_json/nyu.json \
@@ -14,4 +14,4 @@ python -u main.py \
   --backbone_name mmbev_res50 \
   --head_specify DDIMDepthEstimate_Res \
   --inference_steps 20 \
-  --opt_level O0 | tee ../experiments/250731_034741_semantic_depth_mid_fusion/test_timing.log
+  --opt_level O0 | tee ../experiments/baseline_time/test_timing.log
