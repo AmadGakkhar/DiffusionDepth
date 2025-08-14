@@ -2,13 +2,14 @@ python main.py \
     --dir_data /mnt/data/nyudepthv2 \
     --data_name NYU \
     --split_json ../data_json/nyu.json \
-    --save NYU_Res50_train \
+    --save Baseline_30\
     --model_name Diffusion_DCbase_ \
     --backbone_module mmbev_resnet \
     --backbone_name mmbev_res50 \
     --head_specify DDIMDepthEstimate_Res \
     --gpus 0 \
     --opt_level O0 \
-    --batch_size 24 \
-    --epochs 10 \
-    --max_depth 10.0
+    --batch_size 16 \
+    --epochs 20 \
+    --max_depth 10.0 \
+    --pretrain /home/ubuntu/code/dd/DiffusionDepth-Orig/experiments/250716_060541_NYU_Res50_train/model_00010.pt 2>&1 | tee ../baseline_30.log
