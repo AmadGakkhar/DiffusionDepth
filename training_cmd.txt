@@ -1,3 +1,36 @@
 python main.py --data_name NYU --dir_data /mnt/semantic_data/ --split_json ../data_json/nyu.json --save semantic_depth_mid_fusion --max_depth 10.0  --batch_size 16 --epochs 10 --gpus 0 --opt_level O0  --model_name Diffusion_DCbase_ --head_specify DDIMDepthEstimate_Res     --backbone_module mmbev_resnet --backbone_name mmbev_res50
 
 tensorboard --logdir=. --bind_all
+
+
+python main.py \
+    --dir_data /mnt/semantic_data \
+    --data_name NYU \
+    --split_json ../data_json/nyu.json \
+    --save LateFusion_30\
+    --model_name Diffusion_DCbase_ \
+    --backbone_module mmbev_resnet \
+    --backbone_name mmbev_res50 \
+    --head_specify DDIMDepthEstimate_Res \
+    --gpus 0 \
+    --opt_level O0 \
+    --batch_size 16 \
+    --epochs 20 \
+    --max_depth 10.0 \
+    --pretrain /home/ubuntu/code/dd/DiffusionDepth-Orig/experiments/250731_034741_semantic_depth_mid_fusion/model_00010.pt 2>&1 | tee ../latefusion_30.log
+
+python main.py \
+    --dir_data /mnt/semantic_data \
+    --data_name NYU \
+    --split_json ../data_json/nyu.json \
+    --save LateFusion_30_1\
+    --model_name Diffusion_DCbase_ \
+    --backbone_module mmbev_resnet \
+    --backbone_name mmbev_res50 \
+    --head_specify DDIMDepthEstimate_Res \
+    --gpus 0 \
+    --opt_level O0 \
+    --batch_size 16 \
+    --epochs 16 \
+    --max_depth 10.0 \
+    --pretrain /home/ubuntu/code/dd/DiffusionDepth-Orig/experiments/250815_021626_LateFusion_30/model_00004.pt 2>&1 | tee ../latefusion_30_1.log
